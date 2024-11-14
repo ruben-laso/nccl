@@ -8,6 +8,7 @@
 #include "cudawrap.h"
 #include "checks.h"
 #include "param.h"
+#include "nccl_params.h"
 
 // Tracks the chain of graph nodes for a given graph captured identified by
 // its graph id. This state has to live for as long as captured work is being
@@ -126,7 +127,7 @@ ncclResult_t ncclStrongStreamDestruct(struct ncclStrongStream* ss) {
   return ncclSuccess;
 }
 
-NCCL_PARAM(GraphMixingSupport, "GRAPH_MIXING_SUPPORT", 1)
+// NCCL_PARAM(GraphMixingSupport, "GRAPH_MIXING_SUPPORT", 1)
 
 static void ensureTips(struct ncclStrongStreamGraph* g, int n) {
   if (g->tipCapacity < n) {

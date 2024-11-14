@@ -14,6 +14,7 @@
 #include "timer.h"
 #include "profiler.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 #include <sys/syscall.h>
 #include <assert.h>
@@ -719,7 +720,7 @@ static ncclResult_t progressOps(struct ncclProxyState* proxyState, struct ncclPr
   return ncclSuccess;
 }
 
-NCCL_PARAM(ProxyAppendBatchSize, "PROXY_APPEND_BATCH_SIZE", 16);
+// NCCL_PARAM(ProxyAppendBatchSize, "PROXY_APPEND_BATCH_SIZE", 16);
 
 static ncclResult_t ncclProxyGetPostedOps(struct ncclProxyState* proxyState, int* added) {
   struct ncclProxyProgressState* state = &proxyState->progressState;
@@ -822,7 +823,7 @@ void ncclDumpProxyState(int signal) {
   dumpProxyState(ncclLastProxyState);
 }
 
-NCCL_PARAM(CreateThreadContext, "CREATE_THREAD_CONTEXT", 0);
+// NCCL_PARAM(CreateThreadContext, "CREATE_THREAD_CONTEXT", 0);
 static int setProxyThreadContext(struct ncclProxyState* proxyState) {
 #if CUDART_VERSION >= 11030
   static int createThreadContext = -1;
@@ -858,9 +859,9 @@ exit:
   return 0;
 }
 
-// Set to SIGUSR1 or SIGUSR2 to help debug proxy state during hangs
-NCCL_PARAM(ProxyDumpSignal, "PROXY_DUMP_SIGNAL", -1);
-NCCL_PARAM(ProgressAppendOpFreq, "PROGRESS_APPENDOP_FREQ", 8);
+// // Set to SIGUSR1 or SIGUSR2 to help debug proxy state during hangs
+// NCCL_PARAM(ProxyDumpSignal, "PROXY_DUMP_SIGNAL", -1);
+// NCCL_PARAM(ProgressAppendOpFreq, "PROGRESS_APPENDOP_FREQ", 8);
 
 void* ncclProxyProgress(void *proxyState_) {
   struct ncclProxyState* proxyState = (struct ncclProxyState*)proxyState_;

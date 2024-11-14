@@ -9,6 +9,7 @@
 #include "socket.h"
 #include "net.h"
 #include "param.h"
+#include "nccl_params.h"
 
 #include <pthread.h>
 #include <stdlib.h>
@@ -119,8 +120,8 @@ ncclResult_t ncclNetSocketGetProperties(int dev, ncclNetProperties_t* props) {
 #define MAX_REQUESTS NCCL_NET_MAX_REQUESTS
 #define MIN_CHUNKSIZE (64*1024)
 
-NCCL_PARAM(SocketNsocksPerThread, "NSOCKS_PERTHREAD", -2);
-NCCL_PARAM(SocketNthreads, "SOCKET_NTHREADS", -2);
+// NCCL_PARAM(SocketNsocksPerThread, "NSOCKS_PERTHREAD", -2);
+// NCCL_PARAM(SocketNthreads, "SOCKET_NTHREADS", -2);
 
 enum ncclNetSocketCommState {
   ncclNetSocketCommStateStart = 0,

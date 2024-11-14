@@ -13,6 +13,7 @@
 #include "enqueue.h"
 #include "register.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 #if CUDART_VERSION >= 12010
 
@@ -141,9 +142,9 @@ ncclResult_t nvlsGroupUnmapMem(struct ncclComm *comm, size_t size, void* ucptr, 
 
 #define NVLS_MEM_ALIGN_SIZE (1 << 21)
 
-NCCL_PARAM(NvlsEnable, "NVLS_ENABLE", 2);
-NCCL_PARAM(NvlsChannels, "NVLS_NCHANNELS", 16);
-NCCL_PARAM(NvlsChunkSize, "NVLS_CHUNKSIZE", 128*1024);
+// NCCL_PARAM(NvlsEnable, "NVLS_ENABLE", 2);
+// NCCL_PARAM(NvlsChannels, "NVLS_NCHANNELS", 16);
+// NCCL_PARAM(NvlsChunkSize, "NVLS_CHUNKSIZE", 128*1024);
 
 ncclResult_t ncclNvlsInit(struct ncclComm* comm) {
   comm->nvlsSupport = 0;

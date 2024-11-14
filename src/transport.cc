@@ -10,6 +10,7 @@
 #define ENABLE_TIMER 0
 #include "timer.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 struct ncclTransport* ncclTransports[NTRANSPORTS] = {
   &p2pTransport,
@@ -66,8 +67,8 @@ void dumpData(struct ncclConnect* data, int ndata) {
   }
 }
 
-NCCL_PARAM(ConnectRoundMaxPeers, "CONNECT_ROUND_MAX_PEERS", 128);
-NCCL_PARAM(ReportConnectProgress, "REPORT_CONNECT_PROGRESS", 0);
+// NCCL_PARAM(ConnectRoundMaxPeers, "CONNECT_ROUND_MAX_PEERS", 128);
+// NCCL_PARAM(ReportConnectProgress, "REPORT_CONNECT_PROGRESS", 0);
 #include <sys/time.h>
 
 ncclResult_t ncclTransportCheckP2pType(struct ncclComm* comm, bool* intraNodeP2pSupport, bool* directMode) {

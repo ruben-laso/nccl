@@ -11,8 +11,9 @@
 #include "transport.h"
 #include "xml.h"
 #include <math.h>
+#include "nccl_params.h"
 
-NCCL_PARAM(CrossNic, "CROSS_NIC", 2);
+// NCCL_PARAM(CrossNic, "CROSS_NIC", 2);
 
 // Initialize system->maxBw. This is the per-channel (i.e. per-SM)
 // max bw.
@@ -1195,7 +1196,7 @@ fail:
 }
 
 // 0: don't use PXN for P2P, 1: use PXN if needed, 2: use PXN as much as possible to maximize aggregation
-NCCL_PARAM(P2pPxnLevel, "P2P_PXN_LEVEL", 2);
+// NCCL_PARAM(P2pPxnLevel, "P2P_PXN_LEVEL", 2);
 
 ncclResult_t ncclTopoGetNetDev(struct ncclComm* comm, int rank, struct ncclTopoGraph* graph, int channelId, int peerRank, int64_t* id, int* dev, int* proxyRank) {
   int64_t netId = -1;

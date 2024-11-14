@@ -10,6 +10,7 @@
 #include "net.h"
 #include "register.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 ncclResult_t ncclNetDeregister(struct ncclComm* comm, struct ncclReg* reg) {
   struct ncclRegCache* cache = &comm->regCache;
@@ -102,7 +103,7 @@ ncclResult_t ncclRegFind(struct ncclComm* comm, const void* data, size_t size, s
     }
   }
 }
-NCCL_PARAM(LocalRegister, "LOCAL_REGISTER", 1);
+// NCCL_PARAM(LocalRegister, "LOCAL_REGISTER", 1);
 
 ncclResult_t ncclRegister(struct ncclComm* comm, void* data, size_t size, void** handle) {
   if (!ncclParamLocalRegister()) {

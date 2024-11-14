@@ -13,11 +13,12 @@
 #include "cudawrap.h"
 #include "profiler.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 #include <cstring> // std::memcpy
 #include <cinttypes> // PRIx64
 
-NCCL_PARAM(L1SharedMemoryCarveout, "L1_SHARED_MEMORY_CARVEOUT", 0);
+// NCCL_PARAM(L1SharedMemoryCarveout, "L1_SHARED_MEMORY_CARVEOUT", 0);
 
 // Returns maximum kernel stack size of all CUDA kernels
 ncclResult_t ncclInitKernelsForDevice(int cudaArch, size_t* maxStackSize) {
@@ -231,7 +232,7 @@ static void finishPlan(struct ncclComm* comm, struct ncclKernelPlan* plan) {
 }
 
 int64_t ncclParamLocalRegister();
-NCCL_PARAM(GraphRegister, "GRAPH_REGISTER", 1);
+// NCCL_PARAM(GraphRegister, "GRAPH_REGISTER", 1);
 
 struct ncclIpcCleanupCallback {
   struct ncclCommCallback base;
@@ -934,8 +935,8 @@ static ncclResult_t scheduleCollTasksToPlan(
   return ncclSuccess;
 }
 
-NCCL_PARAM(P2pLLThreshold, "P2P_LL_THRESHOLD", 16384);
-NCCL_PARAM(ChunkSize, "CHUNK_SIZE", 0);
+// NCCL_PARAM(P2pLLThreshold, "P2P_LL_THRESHOLD", 16384);
+// NCCL_PARAM(ChunkSize, "CHUNK_SIZE", 0);
 
 // Put p2p op in plan assuming there is sizeof(ncclDevWorkBatch) in batch budget
 // and sizeof(ncclDevWorkP2p) in work budget. "sendRank" and "recvRank" must
@@ -1614,10 +1615,10 @@ ncclResult_t ncclLaunchKernelBefore_NoUncapturedCuda(struct ncclComm* comm, stru
   return ncclSuccess;
 }
 
-#if CUDART_VERSION >= 12000
-// NCCL uses the "Remote" Mem Sync domain by default
-NCCL_PARAM(MemSyncDomain, "MEM_SYNC_DOMAIN", cudaLaunchMemSyncDomainRemote);
-#endif
+// #if CUDART_VERSION >= 12000
+// // NCCL uses the "Remote" Mem Sync domain by default
+// NCCL_PARAM(MemSyncDomain, "MEM_SYNC_DOMAIN", cudaLaunchMemSyncDomainRemote);
+// #endif
 
 ncclResult_t ncclLaunchKernel(struct ncclComm* comm, struct ncclKernelPlan* plan) {
   struct ncclKernelPlanner* planner = &comm->planner;
@@ -1930,7 +1931,7 @@ static ncclResult_t getAlgoInfo(
   return ncclSuccess;
 }
 
-NCCL_PARAM(NvlsTreeMaxChunkSize, "NVLSTREE_MAX_CHUNKSIZE", -2);
+// NCCL_PARAM(NvlsTreeMaxChunkSize, "NVLSTREE_MAX_CHUNKSIZE", -2);
 
 static ncclResult_t calcCollChunking(
     struct ncclComm* comm, struct ncclTaskColl* info, int nChannels, size_t nBytes,

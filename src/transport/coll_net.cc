@@ -13,6 +13,7 @@
 #include "assert.h"
 #include "bootstrap.h"
 #include "channel.h"
+#include "nccl_params.h"
 
 int64_t ncclParamGdrCopySyncEnable();
 int64_t ncclParamGdrCopyFlushEnable();

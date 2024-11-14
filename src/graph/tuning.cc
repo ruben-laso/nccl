@@ -8,9 +8,10 @@
 #include "device.h"
 #include "comm.h"
 #include "topo.h"
+#include "nccl_params.h"
 
-NCCL_PARAM(Nthreads, "NTHREADS", -2);
-NCCL_PARAM(Ll128Nthreads, "LL128_NTHREADS", -2);
+// NCCL_PARAM(Nthreads, "NTHREADS", -2);
+// NCCL_PARAM(Ll128Nthreads, "LL128_NTHREADS", -2);
 
 static int getNthreads(const char* name, int env, int min, int max, int def) {
   int nt = env;
@@ -105,7 +106,7 @@ static const double perChMaxTreeBws[3][3] = {
   /* Hopper (N1/N2/N4) */ {38.7, 41.4, 36.0},
 };
 
-NCCL_PARAM(PatEnable, "PAT_ENABLE", 2);
+// NCCL_PARAM(PatEnable, "PAT_ENABLE", 2);
 static int ncclPatEnable(struct ncclComm* comm) {
   int patEnable = ncclParamPatEnable();
   if (patEnable != 2) return patEnable;
@@ -114,8 +115,8 @@ static int ncclPatEnable(struct ncclComm* comm) {
   return 1;
 }
 
-// Network post overhead in ns (1000 = 1 us)
-NCCL_PARAM(NetOverhead, "NET_OVERHEAD", -2);
+// // Network post overhead in ns (1000 = 1 us)
+// NCCL_PARAM(NetOverhead, "NET_OVERHEAD", -2);
 
 static float getNetOverhead(struct ncclComm* comm) {
   if (ncclParamNetOverhead() != -2) return ncclParamNetOverhead() * .001;

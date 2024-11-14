@@ -12,6 +12,7 @@
 #include "transport.h"
 #include <assert.h>
 #include "shm.h"
+#include "nccl_params.h"
 
 enum p2pType { P2P_DIRECT, P2P_INTERMEDIATE, P2P_IPC, P2P_CUMEM };
 
@@ -109,7 +110,7 @@ static int busIdToCudaDev(int64_t busId) {
 }
 
 // CE memcpy support
-NCCL_PARAM(P2pUseCudaMemcpy, "P2P_USE_CUDA_MEMCPY", 0);
+// NCCL_PARAM(P2pUseCudaMemcpy, "P2P_USE_CUDA_MEMCPY", 0);
 static int useMemcpy = 0;
 static void initCeOperation();
 
@@ -308,8 +309,8 @@ ncclResult_t ncclP2pImportShareableBuffer(struct ncclComm *comm, int peer, size_
 }
 
 // Setting this to non zero causes P2P to use Reads rather than Writes
-NCCL_PARAM(P2pReadEnable, "P2P_READ_ENABLE", -2);
-NCCL_PARAM(P2pDirectDisable, "P2P_DIRECT_DISABLE", 0);
+// NCCL_PARAM(P2pReadEnable, "P2P_READ_ENABLE", -2);
+// NCCL_PARAM(P2pDirectDisable, "P2P_DIRECT_DISABLE", 0);
 
 #define P2P_SAME_PID(MYINFO, PEERINFO) ((MYINFO->hostHash == PEERINFO->hostHash) && (MYINFO->pidHash == PEERINFO->pidHash))
 

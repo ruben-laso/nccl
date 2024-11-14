@@ -13,6 +13,7 @@
 #include <sys/syscall.h>
 #include <chrono>
 #include "param.h"
+#include "nccl_params.h"
 
 int ncclDebugLevel = -1;
 static int pid = -1;
@@ -224,7 +225,7 @@ void ncclDebugLog(ncclDebugLogLevel level, unsigned long flags, const char *file
   }
 }
 
-NCCL_PARAM(SetThreadName, "SET_THREAD_NAME", 0);
+// NCCL_PARAM(SetThreadName, "SET_THREAD_NAME", 0);
 
 void ncclSetThreadName(pthread_t thread, const char *fmt, ...) {
   // pthread_setname_np is nonstandard GNU extension

@@ -13,6 +13,7 @@
 #include <sys/types.h>
 #include "proxy.h"
 #include "param.h"
+#include "nccl_params.h"
 
 #define BOOTSTRAP_N_CHECK_ABORT           10000
 #define BOOTSTRAP_TAG_CONNECT             (0x1 << 31)
@@ -86,7 +87,7 @@ static union ncclSocketAddress bootstrapNetIfAddr;
 static int bootstrapNetInitDone = 0;
 pthread_mutex_t bootstrapNetLock = PTHREAD_MUTEX_INITIALIZER;
 
-NCCL_PARAM(BootstrapNetEnable,"OOB_NET_ENABLE", 0);
+// NCCL_PARAM(BootstrapNetEnable,"OOB_NET_ENABLE", 0);
 
 ncclResult_t bootstrapNetInit() {
   if (bootstrapNetInitDone == 0) {
@@ -595,8 +596,8 @@ fail:
   return ret;
 }
 
-NCCL_PARAM(StaggerRate, "UID_STAGGER_RATE", 7000);
-NCCL_PARAM(StaggerThreshold, "UID_STAGGER_THRESHOLD", 256);
+// NCCL_PARAM(StaggerRate, "UID_STAGGER_RATE", 7000);
+// NCCL_PARAM(StaggerThreshold, "UID_STAGGER_THRESHOLD", 256);
 
 ncclResult_t bootstrapInit(int nHandles, void* handles, struct ncclComm* comm) {
   int rank = comm->rank;

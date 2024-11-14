@@ -11,6 +11,7 @@
 #include "trees.h"
 #include "rings.h"
 #include "topo.h"
+#include "nccl_params.h"
 
 /******************************************************************/
 /********************* Internode connection ***********************/
@@ -321,12 +322,12 @@ static ncclResult_t connectNvls(struct ncclComm* comm, int* nvlsHeads, int nHead
   return ncclSuccess;
 }
 
-// Legacy naming
-NCCL_PARAM(MinNrings, "MIN_NRINGS", -2);
-NCCL_PARAM(MaxNrings, "MAX_NRINGS", -2);
-// New naming
-NCCL_PARAM(MinNchannels, "MIN_NCHANNELS", -2);
-NCCL_PARAM(MaxNchannels, "MAX_NCHANNELS", -2);
+// // Legacy naming
+// NCCL_PARAM(MinNrings, "MIN_NRINGS", -2);
+// NCCL_PARAM(MaxNrings, "MAX_NRINGS", -2);
+// // New naming
+// NCCL_PARAM(MinNchannels, "MIN_NCHANNELS", -2);
+// NCCL_PARAM(MaxNchannels, "MAX_NCHANNELS", -2);
 
 int ncclMinNchannels() {
   int minNchannels = 0;
@@ -372,7 +373,7 @@ void exchangeValues(int* v0, int* v1) {
   *v0 = tmp;
 }
 
-NCCL_PARAM(UnpackDoubleNChannels, "UNPACK_DOUBLE_NCHANNELS", 1);
+// NCCL_PARAM(UnpackDoubleNChannels, "UNPACK_DOUBLE_NCHANNELS", 1);
 
 ncclResult_t ncclTopoPostset(struct ncclComm* comm, int* firstRanks, int* treePatterns, struct ncclTopoRanks** allTopoRanks, int* rings, struct ncclTopoGraph** graphs, struct ncclComm* parent) {
   // Gather data from all ranks

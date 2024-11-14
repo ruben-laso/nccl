@@ -12,6 +12,7 @@
 #include "channel.h"
 #include "transport.h"
 #include "device.h"
+#include "nccl_params.h"
 
 // Pre-compute GPU->NIC, GPU->GPU and NIC->GPU paths
 

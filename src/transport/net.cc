@@ -15,6 +15,7 @@
 #include "profiler.h"
 #include "transport.h"
 #include "shm.h"
+#include "nccl_params.h"
 
 static_assert(sizeof(ncclNetHandle_t) <= CONNECT_SIZE, "NET Connect info is too large");
 
@@ -151,8 +152,8 @@ static ncclResult_t canConnect(int* ret, struct ncclComm* comm, struct ncclTopoG
   return ncclSuccess;
 }
 
-NCCL_PARAM(NetSharedBuffers, "NET_SHARED_BUFFERS", -2);
-NCCL_PARAM(NetSharedComms, "NET_SHARED_COMMS", 1);
+// NCCL_PARAM(NetSharedBuffers, "NET_SHARED_BUFFERS", -2);
+// NCCL_PARAM(NetSharedComms, "NET_SHARED_COMMS", 1);
 
 struct setupReq {
   int tpRank;
@@ -201,10 +202,10 @@ static ncclResult_t sendSetup(struct ncclComm* comm, struct ncclTopoGraph* graph
   return ncclSuccess;
 }
 
-// GDRCOPY support: TAIL_ENABLE When enabled locates the RX proxy tail in CUDA memory
-NCCL_PARAM(GdrCopySyncEnable, "GDRCOPY_SYNC_ENABLE", 1);
-// GDRCOPY support: FLUSH_ENABLE When enabled uses a PCI-E read to flush GDRDMA buffers
-NCCL_PARAM(GdrCopyFlushEnable, "GDRCOPY_FLUSH_ENABLE", 0);
+// // GDRCOPY support: TAIL_ENABLE When enabled locates the RX proxy tail in CUDA memory
+// NCCL_PARAM(GdrCopySyncEnable, "GDRCOPY_SYNC_ENABLE", 1);
+// // GDRCOPY support: FLUSH_ENABLE When enabled uses a PCI-E read to flush GDRDMA buffers
+// NCCL_PARAM(GdrCopyFlushEnable, "GDRCOPY_FLUSH_ENABLE", 0);
 
 /* Setup recv connector */
 static ncclResult_t recvSetup(struct ncclComm* comm, struct ncclTopoGraph* graph, struct ncclPeerInfo* myInfo, struct ncclPeerInfo* peerInfo, struct ncclConnect* connectInfo, struct ncclConnector* recv, int channelId, int connIndex) {
