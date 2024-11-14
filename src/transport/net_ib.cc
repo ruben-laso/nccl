@@ -11,6 +11,7 @@
 #include "graph.h"
 #include "utils.h"
 #include "param.h"
+#include "nccl_params.h"
 
 #include <assert.h>
 #include <pthread.h>
@@ -83,21 +84,21 @@ struct ncclIbDev ncclIbDevs[MAX_IB_DEVS];
 pthread_mutex_t ncclIbLock = PTHREAD_MUTEX_INITIALIZER;
 static int ncclIbRelaxedOrderingEnabled = 0;
 
-NCCL_PARAM(IbGidIndex, "IB_GID_INDEX", -1);
-NCCL_PARAM(IbRoutableFlidIbGidIndex, "IB_ROUTABLE_FLID_GID_INDEX", 1);
-NCCL_PARAM(IbRoceVersionNum, "IB_ROCE_VERSION_NUM", 2);
-NCCL_PARAM(IbTimeout, "IB_TIMEOUT", 20);
-NCCL_PARAM(IbRetryCnt, "IB_RETRY_CNT", 7);
-NCCL_PARAM(IbPkey, "IB_PKEY", 0);
-NCCL_PARAM(IbUseInline, "IB_USE_INLINE", 0);
-NCCL_PARAM(IbSl, "IB_SL", 0);
-NCCL_PARAM(IbTc, "IB_TC", 0);
-NCCL_PARAM(IbArThreshold, "IB_AR_THRESHOLD", 8192);
-NCCL_PARAM(IbPciRelaxedOrdering, "IB_PCI_RELAXED_ORDERING", 2);
-NCCL_PARAM(IbAdaptiveRouting, "IB_ADAPTIVE_ROUTING", -2);
-NCCL_PARAM(IbFifoTc, "IB_FIFO_TC", 0);
-NCCL_PARAM(IbAsyncEvents,"IB_RETURN_ASYNC_EVENTS",1);
-NCCL_PARAM(IbEceEnable,"IB_ECE_ENABLE",1);
+// NCCL_PARAM(IbGidIndex, "IB_GID_INDEX", -1);
+// NCCL_PARAM(IbRoutableFlidIbGidIndex, "IB_ROUTABLE_FLID_GID_INDEX", 1);
+// NCCL_PARAM(IbRoceVersionNum, "IB_ROCE_VERSION_NUM", 2);
+// NCCL_PARAM(IbTimeout, "IB_TIMEOUT", 20);
+// NCCL_PARAM(IbRetryCnt, "IB_RETRY_CNT", 7);
+// NCCL_PARAM(IbPkey, "IB_PKEY", 0);
+// NCCL_PARAM(IbUseInline, "IB_USE_INLINE", 0);
+// NCCL_PARAM(IbSl, "IB_SL", 0);
+// NCCL_PARAM(IbTc, "IB_TC", 0);
+// NCCL_PARAM(IbArThreshold, "IB_AR_THRESHOLD", 8192);
+// NCCL_PARAM(IbPciRelaxedOrdering, "IB_PCI_RELAXED_ORDERING", 2);
+// NCCL_PARAM(IbAdaptiveRouting, "IB_ADAPTIVE_ROUTING", -2);
+// NCCL_PARAM(IbFifoTc, "IB_FIFO_TC", 0);
+// NCCL_PARAM(IbAsyncEvents,"IB_RETURN_ASYNC_EVENTS",1);
+// NCCL_PARAM(IbEceEnable,"IB_ECE_ENABLE",1);
 
 static ncclResult_t ncclIbStatsInit(struct ncclIbStats* stat) {
   __atomic_store_n(&stat->fatalErrorCount, 0, __ATOMIC_RELAXED);
@@ -419,9 +420,9 @@ static ncclResult_t ncclIbGetGidIndex(struct ibv_context *context, uint8_t portN
   return ncclSuccess;
 }
 
-NCCL_PARAM(IbDisable, "IB_DISABLE", 0);
-NCCL_PARAM(IbMergeVfs, "IB_MERGE_VFS", 1);
-NCCL_PARAM(IbMergeNics, "IB_MERGE_NICS", 1);
+// NCCL_PARAM(IbDisable, "IB_DISABLE", 0);
+// NCCL_PARAM(IbMergeVfs, "IB_MERGE_VFS", 1);
+// NCCL_PARAM(IbMergeNics, "IB_MERGE_NICS", 1);
 
 static ncclResult_t ncclIbGetPciPath(char* devName, char** path, int* realPort) {
   char devicePath[PATH_MAX];
@@ -997,7 +998,7 @@ struct ncclIbRecvComm {
 };
 static_assert((offsetof(struct ncclIbRecvComm, remFifo) % 32) == 0, "ncclIbRecvComm fifo must be 32-byte aligned");
 
-NCCL_PARAM(IbQpsPerConn, "IB_QPS_PER_CONNECTION", 1);
+// NCCL_PARAM(IbQpsPerConn, "IB_QPS_PER_CONNECTION", 1);
 
 static void ncclIbAddEvent(struct ncclIbRequest* req, int devIndex, struct ncclIbNetCommDevBase* base) {
   req->events[devIndex]++;
@@ -1359,7 +1360,7 @@ fail:
   goto exit;
 }
 
-NCCL_PARAM(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
+// NCCL_PARAM(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
 
 ncclResult_t ncclIbAccept(void* listenComm, void** recvComm, ncclNetDeviceHandle_t** /*recvDevComm*/) {
   ncclResult_t ret = ncclSuccess;
@@ -1717,7 +1718,7 @@ ncclResult_t ncclIbDeregMr(void* comm, void* mhandle) {
   return ncclSuccess;
 }
 
-NCCL_PARAM(IbSplitDataOnQps, "IB_SPLIT_DATA_ON_QPS", 0);
+// NCCL_PARAM(IbSplitDataOnQps, "IB_SPLIT_DATA_ON_QPS", 0);
 
 ncclResult_t ncclIbMultiSend(struct ncclIbSendComm* comm, int slot) {
   struct ncclIbRequest** reqs = comm->fifoReqs[slot];

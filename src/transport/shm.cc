@@ -8,6 +8,7 @@
 #include "shmutils.h"
 #include "shm.h"
 #include "transport.h"
+#include "nccl_params.h"
 
 #define SHM_PATH_MAX 128
 #define SHM_HANDLE_TYPE CU_MEM_HANDLE_TYPE_POSIX_FILE_DESCRIPTOR
@@ -61,12 +62,12 @@ struct shmRequest {
 
 #define SHM_SEND_SIDE 1
 #define SHM_RECV_SIDE 2
-NCCL_PARAM(ShmDisable, "SHM_DISABLE", 0);
-NCCL_PARAM(ShmUseCudaMemcpy, "SHM_USE_CUDA_MEMCPY", 0);
-NCCL_PARAM(ShmMemcpyMode, "SHM_MEMCPY_MODE", SHM_SEND_SIDE); // 1 is sender-side, 2 is receiver-side, 3 is both
+// NCCL_PARAM(ShmDisable, "SHM_DISABLE", 0);
+// NCCL_PARAM(ShmUseCudaMemcpy, "SHM_USE_CUDA_MEMCPY", 0);
+// NCCL_PARAM(ShmMemcpyMode, "SHM_MEMCPY_MODE", SHM_SEND_SIDE); // 1 is sender-side, 2 is receiver-side, 3 is both
 static int useMemcpySend = 0;
 static int useMemcpyRecv = 0;
-NCCL_PARAM(ShmLocality, "SHM_LOCALITY", SHM_RECV_SIDE); // 1 is sender-size, 2 is receiver-size
+// NCCL_PARAM(ShmLocality, "SHM_LOCALITY", SHM_RECV_SIDE); // 1 is sender-size, 2 is receiver-size
 static int shmLocality = 0;
 static void initCeOperation();
 

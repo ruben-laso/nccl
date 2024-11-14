@@ -32,7 +32,7 @@ static ncclResult_t getPath(struct ncclTopoSystem* system, struct ncclTopoNode* 
   return ncclInternalError;
 }
 
-NCCL_PARAM(NvbDisable, "NVB_DISABLE", 0);
+// NCCL_PARAM(NvbDisable, "NVB_DISABLE", 0);
 
 static ncclResult_t ncclTopoSetPaths(struct ncclTopoNode* baseNode, struct ncclTopoSystem* system) {
   if (baseNode->paths[baseNode->type] == NULL) {
@@ -246,7 +246,7 @@ ncclResult_t ncclGetLevel(int* level, const char* disableEnv, const char* levelE
   return ncclSuccess;
 }
 
-NCCL_PARAM(IgnoreDisabledP2p, "IGNORE_DISABLED_P2P", 0);
+// NCCL_PARAM(IgnoreDisabledP2p, "IGNORE_DISABLED_P2P", 0);
 
 int ncclTopoUserP2pLevel = -1;
 ncclResult_t ncclTopoCheckP2p(struct ncclTopoSystem* system, int rank1, int rank2, int* p2p, int *read, int* intermediateRank) {
@@ -354,7 +354,7 @@ ncclResult_t ncclTopoCheckMNNVL(struct ncclTopoSystem* system, struct ncclPeerIn
   return ncclSuccess;
 }
 
-NCCL_PARAM(NetGdrRead, "NET_GDR_READ", -2);
+// NCCL_PARAM(NetGdrRead, "NET_GDR_READ", -2);
 int ncclTopoUserGdrLevel = -1;
 
 ncclResult_t ncclTopoCheckGdr(struct ncclTopoSystem* system, int64_t busId, int64_t netId, int read, int* useGdr) {
@@ -414,8 +414,8 @@ ncclResult_t ncclTopoCheckGdr(struct ncclTopoSystem* system, int64_t busId, int6
   return ncclSuccess;
 }
 
-// Set to 0 to disable the flush on Hopper when using GDR
-NCCL_PARAM(NetForceFlush, "NET_FORCE_FLUSH", 0);
+// // Set to 0 to disable the flush on Hopper when using GDR
+// NCCL_PARAM(NetForceFlush, "NET_FORCE_FLUSH", 0);
 
 // Determine whether we need to flush the GDR recv buffers
 ncclResult_t ncclTopoNeedFlush(struct ncclTopoSystem* system, int64_t busId, int* flush) {
@@ -427,7 +427,7 @@ ncclResult_t ncclTopoNeedFlush(struct ncclTopoSystem* system, int64_t busId, int
   return ncclSuccess;
 }
 
-NCCL_PARAM(NetDisableIntra, "NET_DISABLE_INTRA", 0);
+// NCCL_PARAM(NetDisableIntra, "NET_DISABLE_INTRA", 0);
 
 // Check whether going through the network would be faster than going through P2P/SHM.
 ncclResult_t ncclTopoCheckNet(struct ncclTopoSystem* system, int rank1, int rank2, int* net) {
@@ -486,7 +486,7 @@ ncclResult_t ncclTopoGetIntermediateRank(struct ncclTopoSystem* system, int rank
   return ncclSuccess;
 }
 
-NCCL_PARAM(PxnDisable, "PXN_DISABLE", 0);
+// NCCL_PARAM(PxnDisable, "PXN_DISABLE", 0);
 
 // Net v4 plugins don't have non-blocking connect/accept. We can't therefore use
 // remote proxies without risking deadlocks
@@ -686,7 +686,7 @@ void ncclTopoFree(struct ncclTopoSystem* system) {
   free(system);
 }
 
-NCCL_PARAM(NChannelsPerNetPeer, "NCHANNELS_PER_NET_PEER", -1);
+// NCCL_PARAM(NChannelsPerNetPeer, "NCHANNELS_PER_NET_PEER", -1);
 
 static ncclResult_t ncclTopoGetNchannels(struct ncclComm* comm, int g /*local gpu index*/, int peerRank, int* nChannels) {
   int peer;
@@ -727,8 +727,8 @@ static ncclResult_t ncclTopoGetNchannels(struct ncclComm* comm, int g /*local gp
   return ncclSuccess;
 }
 
-NCCL_PARAM(MinP2pNChannels, "MIN_P2P_NCHANNELS", 1);
-NCCL_PARAM(MaxP2pNChannels, "MAX_P2P_NCHANNELS", MAXCHANNELS);
+// NCCL_PARAM(MinP2pNChannels, "MIN_P2P_NCHANNELS", 1);
+// NCCL_PARAM(MaxP2pNChannels, "MAX_P2P_NCHANNELS", MAXCHANNELS);
 extern int64_t ncclParamWorkArgsBytes();
 
 ncclResult_t ncclTopoComputeP2pChannels(struct ncclComm* comm) {
