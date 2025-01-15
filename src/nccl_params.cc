@@ -134,7 +134,7 @@ NCCL_PARAM_IMPL(NetOverhead, "NET_OVERHEAD", -2);
 // cudawrap.cc
 // This env var (NCCL_CUMEM_ENABLE) toggles cuMem API usage
 NCCL_PARAM_IMPL(CuMemEnable, "CUMEM_ENABLE", -2);
-NCCL_PARAM_IMPL(CuMemHostEnable, "CUMEM_HOST_ENABLE", 0);
+NCCL_PARAM_IMPL(CuMemHostEnable, "CUMEM_HOST_ENABLE", -1);
 
 // strongstream.cc
 NCCL_PARAM_IMPL(GraphMixingSupport, "GRAPH_MIXING_SUPPORT", 1)
@@ -152,7 +152,7 @@ NCCL_PARAM_IMPL(IbTc, "IB_TC", 0);
 NCCL_PARAM_IMPL(IbArThreshold, "IB_AR_THRESHOLD", 8192);
 NCCL_PARAM_IMPL(IbPciRelaxedOrdering, "IB_PCI_RELAXED_ORDERING", 2);
 NCCL_PARAM_IMPL(IbAdaptiveRouting, "IB_ADAPTIVE_ROUTING", -2);
-NCCL_PARAM_IMPL(IbFifoTc, "IB_FIFO_TC", 0);
+NCCL_PARAM_IMPL(IbFifoTc, "IB_FIFO_TC", -1);
 NCCL_PARAM_IMPL(IbAsyncEvents, "IB_RETURN_ASYNC_EVENTS", 1);
 NCCL_PARAM_IMPL(IbEceEnable, "IB_ECE_ENABLE", 1);
 NCCL_PARAM_IMPL(IbDisable, "IB_DISABLE", 0);
@@ -160,6 +160,7 @@ NCCL_PARAM_IMPL(IbMergeVfs, "IB_MERGE_VFS", 1);
 NCCL_PARAM_IMPL(IbMergeNics, "IB_MERGE_NICS", 1);
 NCCL_PARAM_IMPL(IbQpsPerConn, "IB_QPS_PER_CONNECTION", 1);
 NCCL_PARAM_IMPL(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
+NCCL_PARAM_IMPL(IbWarnRailLocal, "IB_WARN_RAIL_LOCAL", 0);
 NCCL_PARAM_IMPL(IbSplitDataOnQps, "IB_SPLIT_DATA_ON_QPS", 0);
 
 // net_socket.cc
@@ -204,6 +205,7 @@ NCCL_PUBLIC void ncclParamResetAll() {
   NCCL_PARAM_INV(BootstrapNetEnable);
   NCCL_PARAM_INV(StaggerRate);
   NCCL_PARAM_INV(StaggerThreshold);
+  NCCL_PARAM_INV(RasEnable);
 
   // debug.cc
   NCCL_PARAM_INV(SetThreadName);
@@ -333,6 +335,7 @@ NCCL_PUBLIC void ncclParamResetAll() {
   NCCL_PARAM_INV(IbMergeNics);
   NCCL_PARAM_INV(IbQpsPerConn);
   NCCL_PARAM_INV(IbGdrFlushDisable);
+  NCCL_PARAM_INV(IbWarnRailLocal);
   NCCL_PARAM_INV(IbSplitDataOnQps);
 
   // net_socket.cc
