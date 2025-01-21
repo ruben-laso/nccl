@@ -15,11 +15,8 @@
 #include "profiler.h"
 #include "transport.h"
 #include "shm.h"
-<<<<<<< HEAD
 #include "nccl_params.h"
-=======
 #include <assert.h>
->>>>>>> upstream/master
 
 static_assert(sizeof(ncclNetHandle_t) <= CONNECT_SIZE, "NET Connect info is too large");
 
