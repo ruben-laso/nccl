@@ -92,7 +92,7 @@ struct p2pCuMemProxyInfo {
 
 #include <sys/types.h>
 
-NCCL_PARAM(LegacyCudaRegister, "LEGACY_CUDA_REGISTER", 0);
+// NCCL_PARAM(LegacyCudaRegister, "LEGACY_CUDA_REGISTER", 0);
 
 /* Convert a PCI busId string into a local cudaDev device index (cf. CUDA_VISIBLE_DEVICES) */
 static int busIdToCudaDev(int64_t busId) {

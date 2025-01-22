@@ -27,7 +27,7 @@ ncclResult_t ncclRegFind(struct ncclComm* comm, const void* data, size_t size, s
     }
   }
 }
-NCCL_PARAM(LocalRegister, "LOCAL_REGISTER", 1);
+// NCCL_PARAM(LocalRegister, "LOCAL_REGISTER", 1);
 
 ncclResult_t ncclRegLocalIsValid(struct ncclReg *reg, bool *isValid) {
   if (reg && isValid) {

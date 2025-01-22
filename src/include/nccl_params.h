@@ -175,6 +175,15 @@ NCCL_PARAM_DECL(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
 NCCL_PARAM_DECL(IbWarnRailLocal, "IB_WARN_RAIL_LOCAL", 0);
 NCCL_PARAM_DECL(IbSplitDataOnQps, "IB_SPLIT_DATA_ON_QPS", 0);
 
+// ibwrap.cc
+NCCL_PARAM_DECL(IbMQpRetryAll, "IB_MQP_RETRY_ALL", 0);
+NCCL_PARAM_DECL(IbMQpRetryCnt, "IB_MQP_RETRY_CNT", 34);
+NCCL_PARAM_DECL(IbMQpRetryTimeout, "IB_MQP_RETRY_SLEEP_MSEC", 100); // in milliseconds
+
+// socket.cc
+NCCL_PARAM_DECL(RetryCnt, "SOCKET_RETRY_CNT", 34);
+NCCL_PARAM_DECL(RetryTimeOut, "SOCKET_RETRY_SLEEP_MSEC", 100);
+
 // net_socket.cc
 NCCL_PARAM_DECL(SocketNsocksPerThread, "NSOCKS_PERTHREAD", -2);
 NCCL_PARAM_DECL(SocketNthreads, "SOCKET_NTHREADS", -2);
@@ -188,6 +197,7 @@ NCCL_PARAM_DECL(GdrCopySyncEnable, "GDRCOPY_SYNC_ENABLE", 1);
 // GDRCOPY support: FLUSH_ENABLE When enabled uses a PCI-E read to flush GDRDMA
 // buffers
 NCCL_PARAM_DECL(GdrCopyFlushEnable, "GDRCOPY_FLUSH_ENABLE", 0);
+NCCL_PARAM_DECL(NetOptionalRecvCompletion, "NET_OPTIONAL_RECV_COMPLETION", 1);
 
 // nvls.cc
 // #if CUDART_VERSION >= 12010
@@ -202,6 +212,7 @@ NCCL_PARAM_DECL(P2pUseCudaMemcpy, "P2P_USE_CUDA_MEMCPY", 0);
 // Setting this to non zero causes P2P to use Reads rather than Writes
 NCCL_PARAM_DECL(P2pReadEnable, "P2P_READ_ENABLE", -2);
 NCCL_PARAM_DECL(P2pDirectDisable, "P2P_DIRECT_DISABLE", 0);
+NCCL_PARAM_DECL(LegacyCudaRegister, "LEGACY_CUDA_REGISTER", 0);
 
 // shm.cc
 #define SHM_SEND_SIDE 1
@@ -212,6 +223,9 @@ NCCL_PARAM_DECL(ShmUseCudaMemcpy, "SHM_USE_CUDA_MEMCPY", 0);
 NCCL_PARAM_DECL(ShmMemcpyMode, "SHM_MEMCPY_MODE", SHM_SEND_SIDE);
 // 1 is sender-size, 2 is receiver-size
 NCCL_PARAM_DECL(ShmLocality, "SHM_LOCALITY", SHM_RECV_SIDE);
+
+// ras.cc
+NCCL_PARAM_DECL(RasTimeoutFactor, "RAS_TIMEOUT_FACTOR", 1);
 
 NCCL_PUBLIC void ncclParamResetAll();
 

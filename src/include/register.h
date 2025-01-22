@@ -2,12 +2,13 @@
 #define NCCL_REGISTER_H_
 
 #include "device.h"
+#include "nccl_params.h"
 
 #include <cuda.h>
 #include <stdint.h>
 
-int64_t ncclParamLocalRegister();
-int64_t ncclParamGraphRegister();
+// int64_t ncclParamLocalRegister();
+// int64_t ncclParamGraphRegister();
 
 enum {
   NET_REG_COMPLETE = 0x01,

@@ -11,6 +11,8 @@
 #include "ibvcore.h"
 #include "ibvsymbols.h"
 
+#include "nccl_params.h"
+
 static pthread_once_t initOnceControl = PTHREAD_ONCE_INIT;
 static ncclResult_t initResult;
 struct ncclIbvSymbols ibvSymbols;
@@ -88,9 +90,9 @@ ncclResult_t wrap_ibv_symbols(void) {
   container.call; \
   return ncclSuccess;
 
-NCCL_PARAM(IbMQpRetryAll, "IB_MQP_RETRY_ALL", 0);
-NCCL_PARAM(IbMQpRetryCnt, "IB_MQP_RETRY_CNT", 34);
-NCCL_PARAM(IbMQpRetryTimeout, "IB_MQP_RETRY_SLEEP_MSEC", 100); // in milliseconds
+// NCCL_PARAM(IbMQpRetryAll, "IB_MQP_RETRY_ALL", 0);
+// NCCL_PARAM(IbMQpRetryCnt, "IB_MQP_RETRY_CNT", 34);
+// NCCL_PARAM(IbMQpRetryTimeout, "IB_MQP_RETRY_SLEEP_MSEC", 100); // in milliseconds
 
 #define IBV_ERR_EQ(e, code)        (e == code || e == (-code))
 #define IBV_MQP_RETRY_ERRNO(e)     (IBV_ERR_EQ(e, ETIMEDOUT))

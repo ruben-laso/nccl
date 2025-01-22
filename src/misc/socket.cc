@@ -14,8 +14,10 @@
 #include "param.h"
 #include <time.h>
 
-NCCL_PARAM(RetryCnt, "SOCKET_RETRY_CNT", 34);
-NCCL_PARAM(RetryTimeOut, "SOCKET_RETRY_SLEEP_MSEC", 100);
+#include "nccl_params.h"
+
+// NCCL_PARAM(RetryCnt, "SOCKET_RETRY_CNT", 34);
+// NCCL_PARAM(RetryTimeOut, "SOCKET_RETRY_SLEEP_MSEC", 100);
 static void msleep(unsigned int time_msec) {
   const long c_1e6 = 1e6;
   struct timespec tv = (struct timespec){

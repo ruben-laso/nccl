@@ -1453,7 +1453,7 @@ ncclResult_t ncclIbCheckVProps(ncclNetVDeviceProps_t* vProps1, ncclNetVDevicePro
   return ncclSuccess;
 }
 
-NCCL_PARAM(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
+// NCCL_PARAM(IbGdrFlushDisable, "GDR_FLUSH_DISABLE", 0);
 
 ncclResult_t ncclIbAccept(void* listenComm, void** recvComm, ncclNetDeviceHandle_t** /*recvDevComm*/) {
   ncclResult_t ret = ncclSuccess;
