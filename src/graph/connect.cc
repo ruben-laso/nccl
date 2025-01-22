@@ -341,7 +341,7 @@ int ncclMinNchannels() {
   return minNchannels;
 }
 
-extern int64_t ncclParamWorkArgsBytes();
+// extern int64_t ncclParamWorkArgsBytes();
 
 int ncclMaxNchannels() {
   int maxNchannels = MAXCHANNELS;

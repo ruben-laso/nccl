@@ -9,6 +9,8 @@
 
 #include "ras_internal.h"
 
+#include "nccl_params.h"
+
 // Links forming the backbone of the RAS network (currently a ring).
 struct rasLink rasNextLink = {1}, rasPrevLink = {-1};
 

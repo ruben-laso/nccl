@@ -433,7 +433,7 @@ extern int nNcclComms;
 extern  bool ncclCommsSorted;
 extern char rasLine[SOCKET_NAME_MAXLEN+1];
 
-int64_t ncclParamRasTimeoutFactor();
+// int64_t ncclParamRasTimeoutFactor();
 ncclResult_t rasMsgAlloc(struct rasMsg** msg, size_t msgLen);
 void rasMsgFree(struct rasMsg* msg);
 void rasConnEnqueueMsg(struct rasConnection* conn, struct rasMsg* msg, size_t msgLen, bool front = false);
